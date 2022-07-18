@@ -15,27 +15,35 @@ def flames(n1,n2):
                 l2.remove(j)
                 break
     
-    l = l1+l2
+    n = len(l1+l2)
     
-    n = len(l)
-    
-    f = ["Friends", "Love", "Affection", "Marriage", "Enemy", "Siblings"]
+    F = ["Friends", "Lovers", "Affection", "Marriage", "Enemies", "Siblings"]
  
-    while len(f) > 1 :
-        Index = (n%len(f) - 1) # reference for slicing the list
+    while len(F) > 1 :
+        Index = (n%len(F) - 1) # reference for slicing the list
         
         if Index >= 0 :
             
-            f_right = f[Index + 1 : ] # removing  letter by slicing the list to the right side of the letter
-            f_left = f[ : Index] # removing  letter by slicing the list to the left side of the letter
-            f = f_right + f_left # swapping the right and left of the list to start counting from the letter next to the deleted letter
+            F_right = F[Index + 1 : ] # removing  letter by slicing the list to the right side of the letter
+            F_left = F[ : Index] # removing  letter by slicing the list to the left side of the letter
+            F = F_right + F_left # swapping the right and left of the list to start counting from the letter next to the deleted letter
             
         else :
-            f = f[ : len(f) - 1]
+            F = F[ : len(F) - 1]
 
-    print("Relationship status :", f[0])
+    print("Relationship status :", F[0])
+
+    if F[0] == "Marriage":
+        print("Eyy mama.. party!")
+
+    if F[0] == "Enemies":
+        print("Daniki konchem dooram ga undu mawa")
 
 n1 = input("Enter your name: ").replace(' ','').upper()
 n2 = input("Enter your crush name: ").replace(' ','').upper()
+
+if n1 == n2:
+    print("Self love aa?\nInka nuvvu life-long single ra")
+    exit(0)
 
 flames(n1,n2)
