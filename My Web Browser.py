@@ -44,11 +44,11 @@ class MainWindow(QMainWindow):
 
     def navigate_to_url(self):
         url = self.url_bar.text()
-        if url[-1:-5] != "moc.":
-            url = "http://google.com/search?q="+url
-        self.browser.setUrl(QUrl(url))
+        if url[-1:-5:-1] != "moc.":
+            url = "https://google.com/search?q="+url
         if url[:8] != "https://":
-            url = "https://" + self.url_bar.text()
+            url = "https://" + url
+        self.browser.setUrl(QUrl(url))
 
     def update_url(self, q):
         self.url_bar.setText(q.toString())
