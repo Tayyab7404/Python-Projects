@@ -1,9 +1,8 @@
-# My Browser:
-
 from sys import *
 from PyQt5.QtCore import *
 from PyQt5.QtWidgets import *
 from PyQt5.QtWebEngineWidgets import *
+
 
 class MainWindow(QMainWindow):
     def __init__(self):
@@ -45,10 +44,17 @@ class MainWindow(QMainWindow):
     def navigate_to_url(self):
         url = self.url_bar.text()
         if url[-1:-5:-1] != "moc.":
-            url = "https://google.com/search?q="+url
+            new_url = "https://google.com/search?q="+url
+        
+        elif url[-1:-4:-1] != "ni.":
+            new_url = "https://google.com/search?q="+url
+        
         if url[:8] != "https://":
-            url = "https://" + url
-        self.browser.setUrl(QUrl(url))
+            new_url = "https://" + url
+        else:
+            new_url = url
+            
+        self.browser.setUrl(QUrl(new_url))
 
     def update_url(self, q):
         self.url_bar.setText(q.toString())
