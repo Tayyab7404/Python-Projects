@@ -3,6 +3,23 @@ from PyQt5.QtCore import *
 from PyQt5.QtWidgets import *
 from PyQt5.QtWebEngineWidgets import *
 
+def is_protocol(url):
+    protocols = ["https://", "http://"]
+
+    for i in protocols:
+        if i in url:
+            return True
+    
+    return False
+
+def is_domain(url):
+    domains = [".com", ".com/", ".in", ".in/"]
+
+    for i in domains:
+        if i in url:
+            return True
+    
+    return False
 
 class MainWindow(QMainWindow):
     def __init__(self):
@@ -44,15 +61,15 @@ class MainWindow(QMainWindow):
     def navigate_to_url(self):
         url = self.url_bar.text()
         
-        if url[-1:-5:-1] != "moc." and url[-1:-4:-1] != "ni.":
-            new_url = "https://google.com/search?q="+url
-        
-        elif (url[-1:-5:-1] == "moc." or url[-1:-4:-1] == "ni.") and url[:8] != "https://":
+        if is_domain(url) and is_protocol(url) == False:
             new_url = "https://" + url
+
+        elif is_domain(url) == False:
+            new_url = "https://google.com/search?q="+url
 
         else:
             new_url = url
-            
+
         self.browser.setUrl(QUrl(new_url))
 
     def update_url(self, q):
