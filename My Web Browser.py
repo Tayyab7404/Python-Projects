@@ -4,7 +4,8 @@ from PyQt5.QtWidgets import *
 from PyQt5.QtWebEngineWidgets import *
 
 def is_protocol(url):
-    protocols = ["https://", "http://"]
+    protocols = ["https://", "https:/", 
+                 "http://", "http:/"]
 
     for i in protocols:
         if i in url:
@@ -13,7 +14,9 @@ def is_protocol(url):
     return False
 
 def is_domain(url):
-    domains = [".com", ".com/", ".in", ".in/"]
+    domains = [".com", ".com/", ".in", ".in/", 
+               ".org", ".org/", ".net", ".net/", 
+               ".edu", ".edu/", ".gov", ".gov/"]
 
     for i in domains:
         if i in url:
