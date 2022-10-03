@@ -43,14 +43,13 @@ class MainWindow(QMainWindow):
 
     def navigate_to_url(self):
         url = self.url_bar.text()
-        if url[-1:-5:-1] != "moc.":
+        
+        if url[-1:-5:-1] != "moc." and url[-1:-4:-1] != "ni.":
             new_url = "https://google.com/search?q="+url
         
-        elif url[-1:-4:-1] != "ni.":
-            new_url = "https://google.com/search?q="+url
-        
-        if url[:8] != "https://":
+        elif (url[-1:-5:-1] == "moc." or url[-1:-4:-1] == "ni.") and url[:8] != "https://":
             new_url = "https://" + url
+
         else:
             new_url = url
             
